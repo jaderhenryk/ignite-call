@@ -24,8 +24,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(401).end()
   }
   const { intervals } = timeIntervalsBodySchema.parse(req.body)
-  console.log(intervals)
-  // await prisma.userTimeInterval.creatMany()
   await Promise.all(intervals.map(interval => {
     return prisma.userTimeInterval.create({
       data: {
